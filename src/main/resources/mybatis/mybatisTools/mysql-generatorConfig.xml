@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<classPathEntry
+		location="D:\maven-jar\my_repository\mysql\mysql-connector-java\5.1.34\mysql-connector-java-5.1.34.jar" />
+
+	<!-- defaultModelType :conditional 如果表只有一个主键，所有字段放在一个类中，如果多于一个主键，主键单独放一个类中 
+		flat 表中所有字段放在一个model类中 hierarchical 主键单独放在一个类中，model类继承主键类 -->
+	<context id="MYSQL2Tables" targetRuntime="MyBatis3"
+		defaultModelType="flat">
+
+		<commentGenerator>
+			<!-- suppressAllComments为true 去掉所有的注释 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://47.95.3.209:3306/hellomysql" 
+			userId="root"
+			password="111111">
+		</jdbcConnection>
+
+		<!-- 如果设为true，number类型会设置为BigDecimal属性 -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.wenhao.model"
+			targetProject="springboot-0">
+			<!-- 关闭自动添加子包 -->
+			<property name="enableSubPackages" value="false" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="com.wenhao.dao"
+			targetProject="springboot-0">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator targetPackage="com.wenhao.dao" type="XMLMAPPER" targetProject="springboot-0">
+			<property name="enableSubPackages" value="false" /> </javaClientGenerator>
+
+		<!-- schema 对于数据库里面有多个相同表名在不同的schema，必须加上该属性，否则插件运行报错 domainObjectName 
+			生成的model类名 -->
+		<table tableName="goods"
+			domainObjectName="Goods"
+			enableSelectByExample="false"
+			enableDeleteByExample="false" 
+			enableCountByExample="false"
+			enableUpdateByExample="false" 
+			selectByExampleQueryId="false"
+			>
+			<!-- 默认model属性的生成规则是遇到column有下划线,去掉下划线并把后面的一个字符大写 ,eg:card_no->cardNo 
+				useActualColumnNames为true,model属性使用数据库column实际值 -->
+			<property name="useActualColumnNames" value="false" />
+		</table>
+	</context>
+</generatorConfiguration>
