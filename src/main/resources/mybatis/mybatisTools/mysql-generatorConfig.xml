@@ -28,23 +28,23 @@
 		</javaTypeResolver>
 
 		<javaModelGenerator targetPackage="com.wenhao.model"
-			targetProject="springboot-0">
+			targetProject="springboot_demo">
 			<!-- 关闭自动添加子包 -->
 			<property name="enableSubPackages" value="false" />
 		</javaModelGenerator>
 
 		<sqlMapGenerator targetPackage="com.wenhao.dao"
-			targetProject="springboot-0">
+			targetProject="springboot_demo">
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 
-		<javaClientGenerator targetPackage="com.wenhao.dao" type="XMLMAPPER" targetProject="springboot-0">
+		<javaClientGenerator targetPackage="com.wenhao.dao" type="XMLMAPPER" targetProject="springboot_demo">
 			<property name="enableSubPackages" value="false" /> </javaClientGenerator>
 
 		<!-- schema 对于数据库里面有多个相同表名在不同的schema，必须加上该属性，否则插件运行报错 domainObjectName 
 			生成的model类名 -->
-		<table tableName="goods"
-			domainObjectName="Goods"
+		<table tableName="miaosha_order"
+			domainObjectName="MiaoshaOrder"
 			enableSelectByExample="false"
 			enableDeleteByExample="false" 
 			enableCountByExample="false"
