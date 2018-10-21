@@ -14,4 +14,6 @@ public interface GoodsMapper {
     Goods selectByPrimaryKey(Long id);
 
     int update(Goods record);
+    
+    int reduceStock(Long id);
 }

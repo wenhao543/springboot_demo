@@ -24,6 +24,12 @@
     from miaosha_goods
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="selectGoodsByGoodsId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	select 
+    <include refid="Goods_Column_List" />,<include refid="MGoods_Column_List" />
+    from miaosha_goods mg left join goods g on mg.goods_id=g.id
+    where g.id = #{id,jdbcType=BIGINT}
+  </select>
   <select id="selectGoodsList" resultMap="BaseResultMap">
   	select 
     <include refid="Goods_Column_List" />,<include refid="MGoods_Column_List" />
@@ -76,6 +82,11 @@
       </if>
     </trim>
   </insert>
+  <update id="reduceStock" parameterType="java.lang.Long">
+    update miaosha_goods
+    set stock_count = stock_count - 1
+    where id = #{id,jdbcType=BIGINT}
+  </update>
   <update id="update" parameterType="com.wenhao.model.MiaoshaGoods">
     update miaosha_goods
     <set>

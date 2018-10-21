@@ -1,5 +1,6 @@
 package com.wenhao.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class OrderInfo {
@@ -22,6 +23,8 @@ public class OrderInfo {
     private Date createDate;
 
     private Date payDate;
+    
+    private BigDecimal goodsPrice;
 
     public Long getId() {
         return id;
@@ -102,4 +105,12 @@ public class OrderInfo {
     public void setPayDate(Date payDate) {
         this.payDate = payDate;
     }
+
+	public BigDecimal getGoodsPrice() {
+		return goodsPrice;
+	}
+
+	public void setGoodsPrice(BigDecimal goodsPrice) {
+		this.goodsPrice = goodsPrice;
+	}
 }

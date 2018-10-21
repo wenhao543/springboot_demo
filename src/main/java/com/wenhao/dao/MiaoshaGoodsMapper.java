@@ -15,10 +15,14 @@ public interface MiaoshaGoodsMapper {
     int insertSelective(MiaoshaGoods record);
 
     GoodsVo selectByPrimaryKey(Long id);
+    
+    GoodsVo selectGoodsByGoodsId(Long Id);
 
     int updateByPrimaryKeySelective(MiaoshaGoods record);
 
     int updateByPrimaryKey(MiaoshaGoods record);
     
     List<GoodsVo> selectGoodsList();
+
+	int reduceStock(Long id);
 }

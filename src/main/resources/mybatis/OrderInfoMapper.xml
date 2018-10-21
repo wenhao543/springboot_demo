@@ -12,10 +12,11 @@
     <result column="status" jdbcType="TINYINT" property="status" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="pay_date" jdbcType="TIMESTAMP" property="payDate" />
+    <result column="goods_price" jdbcType="DECIMAL" property="goodsPrice" />
   </resultMap>
   <sql id="Base_Column_List">
     id, user_id, goods_id, delivery_addr_id, goods_name, goods_count, order_channel, 
-    status, create_date, pay_date
+    status, create_date, pay_date, goods_price
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -28,6 +29,9 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.wenhao.model.OrderInfo">
+  	<selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+        SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
     insert into order_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -60,6 +64,9 @@
       <if test="payDate != null">
         pay_date,
       </if>
+      <if test="goodsPrice != null">
+        goods_price,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -91,6 +98,9 @@
       </if>
       <if test="payDate != null">
         #{payDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsPrice != null">
+        #{goodsPrice,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
